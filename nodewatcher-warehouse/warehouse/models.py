@@ -1,8 +1,18 @@
 from django.db import models
-from django-macaddress import fields
+from macaddress import fields
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
+
+class Location(models.Model):
+    name = models.CharField(max_length=50)
+    gps_x = models.IntegerField()
+    gps_y = models.IntegerField()
+
+class Attribute(models.Model):
+    name = models.CharField(max_length=50)
+    att_type = models.CharField(max_length=50)
+    value = models.CharField(max_length=500)
 
 class Item(models.Model):
     STATUS_CHOICES = (
@@ -26,10 +36,7 @@ class Item(models.Model):
     # ref to people
     # ref to hot spot location
         
-class Location(models.Model):
-    name = models.CharField(max_length=50)
-    gps_x = models.IntegerField()
-    gps_y = models.IntegerField()
+
 
 class Instance(models.Model):
     name = models.CharField(max_length=50)
@@ -42,8 +49,3 @@ class Instance(models.Model):
     location = models.ForeignKey(Location)
     # ref to people
     # ref to hot spot location
-    
-class Attribute(models.Model):
-    name = models.CharField(max_length=50)
-    att_type = models.CharField(max_length=50)
-    value = models.CharField(max_length=500)
