@@ -16,6 +16,7 @@ class InstanceAdmin(admin.ModelAdmin):
 class AttributeAdmin(admin.ModelAdmin):
     pass
 
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Item, ItemAdmin)
 admin.site.register(Location, LocationAdmin)
