@@ -35,8 +35,6 @@ class Item(models.Model):
     atts = models.ManyToManyField(Attribute)
     # ref to people
     # ref to hot spot location
-        
-
 
 class Instance(models.Model):
     name = models.CharField(max_length=50)
