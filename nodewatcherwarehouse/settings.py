@@ -85,7 +85,7 @@ SECRET_KEY = 'zn&amp;#f+209_kgnn*^6@-if_k=)#keezg@9(zr-r&amp;&amp;!4scd#a*ac'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
+#    'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 #     'django.template.loaders.eggs.Loader',
 )
@@ -111,7 +111,7 @@ ROOT_URLCONF = 'nodewatcherwarehouse.urls'
 WSGI_APPLICATION = 'nodewatcherwarehouse.wsgi.application'
 
 TEMPLATE_DIRS = (
-    '/Users/crt/PycharmProjects/wlan_warehouse/warehouse/nodewatcherwarehouse/warehouse/templates',
+#    '/Users/crt/PycharmProjects/wlan_warehouse/warehouse/nodewatcherwarehouse/warehouse/templates/',
 )
 
 INSTALLED_APPS = (
