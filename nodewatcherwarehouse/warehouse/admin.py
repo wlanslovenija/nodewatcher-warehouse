@@ -2,10 +2,10 @@ from django.contrib import admin
 from models import Category, Item, Location, Instance, Attribute
 
 class CategoryAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("name", )
 
 class ItemAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("name", "note", "status", "amount", "category", "location", )
 
 class LocationAdmin(admin.ModelAdmin):
     pass
