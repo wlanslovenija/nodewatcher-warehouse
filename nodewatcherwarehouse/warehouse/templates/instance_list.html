@@ -1,0 +1,29 @@
+{% extends "menu.html" %}
+{% block content %}
+    <table>
+        <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Note</th>
+        <th>Mac</th>
+        <th>Status</th>
+        <th>Location</th>
+        <th>Status changed</th>
+        <th>Date added</th>
+        <th>Last change</th>
+        </tr>
+        {% for i in instance_lise %}
+        <tr>
+            <td>{{ i.id }}</td>
+            <td>{{ i.name }}</td>
+            <td>{{ i.note }}</td>
+            <td>{{ i.mac }}</td>
+            <td>{{ i.status }}</td>
+            <td>{{ i.location }}</td>
+            <td>{{ i.status_change }}</td>
+            <td>{{ i.date_added }}</td>
+            <td>{{ i.last_change }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
