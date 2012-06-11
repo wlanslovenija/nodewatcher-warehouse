@@ -47,15 +47,22 @@ class Item(models.Model):
     atts = models.ManyToManyField(Attribute)
     # ref to people
     # ref to hot spot location
+    
+    def __str__(self):
+        return u"%s %s" % (str(self.id), self.name)
 
 class Instance(models.Model):
     name = models.CharField(max_length=50)
     note = models.CharField(max_length=100, blank=True)
+    item = models.ForeignKey(Item)
     status = models.CharField(max_length=50, choices = Item.STATUS_CHOICES)
-    mac = fields.MACAddressField(blank=True)
-    date_added = models.DateField(blank=True)
-    status_change = models.DateField(blank=True)
-    last_change = models.DateField(blank=True)
+    mac = fields.MACAddressField(blank=True, null=True)
+    date_added = models.DateField(blank=True, null=True)
+    status_change = models.DateField(blank=True, null=True)
+    last_change = models.DateField(blank=True, null=True)
     location = models.ForeignKey(Location)
+    
+    def __str__(self):
+        return "%s %s" % (self.name, str(self.mac))
     # ref to people
     # ref to hot spot location

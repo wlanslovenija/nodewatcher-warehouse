@@ -11,7 +11,7 @@ class LocationAdmin(admin.ModelAdmin):
     pass
 
 class InstanceAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("id", "name", "note", "status", "mac", "location", "date_added", "status_change")
 
 class AttributeAdmin(admin.ModelAdmin):
     pass
