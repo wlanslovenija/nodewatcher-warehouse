@@ -1,9 +1,29 @@
-
+{% extends "menu.html" %}
 {% block content %}
-    <h2>Items</h2>
-    <ul>
+    <table>
+        <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Status changed</th>
+        <th>Amount</th>
+        <th>Category</th>
+        <th>Location</th>
+        <th>Date added</th>
+        <th>Last change</th>
+        </tr>
         {% for i in item_list %}
-            <li>{{ i.name }}</li>
+        <tr>
+            <td>{{ i.id }}</td>
+            <td>{{ i.name }}</td>
+            <td>{{ i.status }}</td>
+            <td>{{ i.status_change }}</td>
+            <td>{{ i.amount }}</td>
+            <td>{{ i.category }}</td>
+            <td>{{ i.location }}</td>
+            <td>{{ i.date_added }}</td>
+            <td>{{ i.last_change }}</td>
+        </tr>
         {% endfor %}
-    </ul>
+    </table>
 {% endblock %}
