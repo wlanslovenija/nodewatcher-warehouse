@@ -9,3 +9,4 @@ class ItemForm(forms.ModelForm):
 class InstanceForm(forms.ModelForm):
     class Meta:
         model = Instance
+        exclude = ('date_added', 'status_change', 'last_change')
