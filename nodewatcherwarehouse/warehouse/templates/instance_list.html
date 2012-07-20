@@ -15,7 +15,7 @@
         {% for i in instance_list %}
         <tr>
             <td>{{ i.id }}</td>
-            <td> <a href="{% url instance-detail pk=i.id %}">{{ i.name }}</a></td>
+            <td> <a href="{% url wh:instance-detail pk=i.id %}">{{ i.name }}</a></td>
             <td>{{ i.note }}</td>
             <td>{{ i.mac }}</td>
             <td>{{ i.status }}</td>
