@@ -1,6 +1,9 @@
 from django.db import models
 from macaddress import fields
 
+from nodewatcher.core.models.config import GeneralConfig
+from django.contrib.auth.models import User
+
 class Category(models.Model):
     name = models.CharField(max_length=50)
     
@@ -45,8 +48,11 @@ class Item(models.Model):
     status_change = models.DateField(blank=True)
     last_change = models.DateField(blank=True)
     atts = models.ManyToManyField(Attribute)
+    
     # ref to people
+    member = models.ForeignKey(User, blank=True, null=True)
     # ref to hot spot location
+    node = models.ForeignKey(GeneralConfig, blank=True, null=True)
     
     def __str__(self):
         return u"%s %s" % (str(self.id), self.name)
