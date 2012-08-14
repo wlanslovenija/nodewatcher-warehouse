@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from forms import InstanceForm, ItemForm
 from models import Item, Instance
 from django.views.generic.edit import CreateView
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse_lazy
 
 def list(request):
     return HttpResponse("Hello world!")
@@ -14,8 +14,7 @@ class ItemAdd(CreateView):
     form_class = ItemForm
     model = Item
     template_name = 'item_add.html'
-    success_url = '/items/list'
-    # TODO resolve()
+    success_url = reverse_lazy('wh:item-list')
     
     def form_valid(self, form):
         import datetime
