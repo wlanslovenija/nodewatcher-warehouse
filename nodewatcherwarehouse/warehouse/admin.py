@@ -5,13 +5,15 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ("name", )
 
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ("name", "note", "status", "amount", "category", "location", )
+    pass
+    #list_display = ("name", "note", "status", "amount", "category", "location", )
 
 class LocationAdmin(admin.ModelAdmin):
     pass
 
 class InstanceAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "note", "status", "mac", "location", "date_added", "status_change")
+    pass
+    #list_display = ("id", "name", "note", "status", "mac", "location", "date_added", "status_change")
 
 class AttributeAdmin(admin.ModelAdmin):
     pass
