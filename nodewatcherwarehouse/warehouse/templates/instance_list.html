@@ -1,17 +1,22 @@
-{% extends "menu.html" %}
+{% extends "base_warehouse.html" %}
+{% load i18n %}
+
 {% block content %}
-    <table>
+    <table  border="0" width="100%" class="listing">
+        <thead>
         <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Note</th>
-        <th>Mac</th>
-        <th>Status</th>
-        <th>Location</th>
-        <th>Status changed</th>
-        <th>Date added</th>
-        <th>Last change</th>
+        <th>{% trans "Id" %}</th>
+        <th>{% trans "Name" %}</th>
+        <th>{% trans "Note" %}</th>
+        <th>{% trans "Mac" %}</th>
+        <th>{% trans "Status" %}</th>
+        <th>{% trans "Location" %}</th>
+        <th>{% trans "Status changed" %}</th>
+        <th>{% trans "Date added" %}</th>
+        <th>{% trans "Last change" %}</th>
         </tr>
+        </thead>
+        <tbody>
         {% for i in instance_list %}
         <tr>
             <td>{{ i.id }}</td>
@@ -25,5 +30,6 @@
             <td>{{ i.last_change }}</td>
         </tr>
         {% endfor %}
+        </tbody>
     </table>
 {% endblock %}
