@@ -1,6 +1,8 @@
-<html>
+{% extends "base.html" %}
+{% load i18n %}
 
-<a href="{% url wh:item-add %}">Add item</a> | <a href="{% url wh:item-list %}">List items</a> | <a href="{% url wh:instance-list %}">List instances</a>
+
+{% block heading %}
+<a href="{% url wh:items %}">Items</a> | <a href="{% url wh:instances %}">Instances</a>
 <hr>
-{% block content %}{% endblock %}
-</html>
+{% endblock %}
