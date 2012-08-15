@@ -1,0 +1,48 @@
+{% extends "base_warehouse.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<form action="{% url wh:items %}" method="post">{% csrf_token %}
+
+<p>{% trans "Please add an item (router type, t-shirt) to the warehouse database. Once you specify the item you can add particular instances of item types." %} </p><br/>
+
+{% for field in form %}
+    <div class="fieldWrapper">
+        <b>{{ field.errors }}</b>
+        {{ field.label_tag }}: {{ field }}
+    </div>
+{% endfor %}
+
+<br/>
+<input type="submit" value="{% trans "Submit" %}" />
+</form>
+
+<br/>
+
+<h3>Existing items</h3>
+
+<table border="0" class="listing">
+    <thead>
+    <tr>
+    <th>{% trans "Name" %}</th>
+    <th>{% trans "Category" %}</th>
+    <th>{% trans "Attributes" %}</th>
+    <th>{% trans "Date added" %}</th>
+    <th>{% trans "Note" %}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in item_list %}
+    <tr>
+        <td>{{ i.name }}</td>
+        <td>{{ i.category }}</td>
+        <td>{{ i.attributes }}</td>
+        <td>{{ i.date_added }}</td>
+        <td>{{ i.note }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

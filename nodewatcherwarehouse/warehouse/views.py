@@ -13,12 +13,18 @@ def view(request, id):
 class ItemAdd(CreateView):
     form_class = ItemForm
     model = Item
-    template_name = 'item_add.html'
-    success_url = reverse_lazy('wh:item-list')
+    template_name = 'items.html'
+    success_url = reverse_lazy('wh:items')
     
     def form_valid(self, form):
         import datetime
         form.instance.date_added = datetime.datetime.now().date()
-        form.instance.status_change = datetime.datetime.now().date()
         form.instance.last_change = datetime.datetime.now().date()
         return super(ItemAdd, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(CreateView, self).get_context_data(**kwargs)
+        from warehouse.models import Item
+        
+        context['item_list'] = Item.objects.all()
+        return context
