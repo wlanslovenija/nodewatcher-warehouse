@@ -19,4 +19,6 @@ urlpatterns = patterns('',
     url(r'^item/(?P<pk>\d+)/view$', DetailView.as_view(model = Item, template_name='item_detail.html'), name='item-detail'),
     
     url(r'^mystuff$', MyStuff.as_view(), name='mystuff'),
+    
+    url(r'^qr_api/(?P<size>\d{1,2})/(?P<string>.*)$', generate_qr),
 )

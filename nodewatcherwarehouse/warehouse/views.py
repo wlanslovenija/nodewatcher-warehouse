@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from forms import *
 from models import *
 from django.views.generic.edit import CreateView, DeleteView
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, View
 from django.core.urlresolvers import reverse_lazy
 
 class MyStuff(TemplateView):
@@ -46,9 +46,10 @@ class ItemView(CreateView):
     success_url = reverse_lazy('wh:item')
 
     def form_valid(self, form):
-    #    import datetime
-    #    form.instance.date_added = datetime.datetime.now().date()
-    #    form.instance.last_change = datetime.datetime.now().date()
+        import datetime
+        form.instance.date_added = datetime.datetime.now().date()
+        form.instance.last_changed = datetime.datetime.now().date()
+        form.instance.status_changed = datetime.datetime.now().date()
         return super(ItemView, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -56,3 +57,18 @@ class ItemView(CreateView):
         from warehouse.models import Item
         context['item_list'] = Item.objects.all()
         return context
+
+def generate_qr(request, string="", size=5, pix_size=6):
+    import qrcode
+    qr = qrcode.QRCode(
+        version=size,
+        error_correction=qrcode.constants.ERROR_CORRECT_M,
+        box_size=pix_size,
+        border=2,
+    )
+    qr.add_data(string)
+    qr.make()
+    img = qr.make_image()
+    response = HttpResponse(mimetype="image/png")
+    img.save(response, "PNG")
+    return response
