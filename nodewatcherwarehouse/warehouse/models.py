@@ -61,7 +61,7 @@ class Instance(models.Model):
     amount = models.IntegerField(blank=True, null=True)
     
     # location
-    location = models.ForeignKey(Location)
+    location = models.ForeignKey(Location, blank=True, null=True)
     # ref to people
     member = models.ForeignKey(User, blank=True, null=True)
     # ref to hot spot location
