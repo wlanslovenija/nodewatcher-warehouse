@@ -12,12 +12,10 @@ class Category(models.Model):
 
 class Location(models.Model):
     name = models.CharField(max_length=50)
-    gps_x = models.IntegerField(blank=True)
-    gps_y = models.IntegerField(blank=True)
-
+    
     def __str__(self):
-        return "%s (%s, %s)" % (self.name, str(self.gps_x), str(self.gps_y))
-
+        return self.name
+    
 class Attribute(models.Model):
     name = models.CharField(max_length=50)
     att_type = models.CharField(max_length=50, blank=True)
