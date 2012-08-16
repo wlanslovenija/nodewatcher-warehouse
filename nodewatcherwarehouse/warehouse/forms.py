@@ -18,13 +18,11 @@ class ItemForm(forms.ModelForm):
         else:
             return obj.username
     
-    """
     def __init__(self, *args, **kwargs):
         super(forms.ModelForm, self).__init__(*args, **kwargs)
         self.fields["node"].label_from_instance = lambda y: y.name
         self.fields["node"].queryset = Node.objects.regpoint("config").registry_fields(name = "GeneralConfig.name")
         self.fields["member"].label_from_instance = self.label_member
-    """
     
     class Meta:
         model = Item

@@ -4,7 +4,7 @@
 {% block content %}
 <form action="{% url wh:item %}" method="post">{% csrf_token %}
 
-<p>{% trans "Please add an instance of router, antenna or t-shirt to the warehouse database." %} </p><br/>
+<p>{% trans "Please add an items (router, antenna or t-shirt) to the warehouse database." %} </p><br/>
 
 <div class="fieldWrapper">
     <b>{{ form.item_type.errors }}</b>
@@ -30,7 +30,7 @@
 </div>
 
 </br>
-<p>{% trans "Would you like to specify more than one instance of the same item type? This field is suitable for small and cheap objects in large quantities (t-shirts, connectors)." %}</p>
+<p>{% trans "Would you like to specify more than one item of the same item type? This field is suitable for small and cheap items in large quantities (t-shirts, connectors)." %}</p>
 
 <div class="fieldWrapper">
     <b>{{ form.amount.errors }}</b>
@@ -38,7 +38,7 @@
 </div>
 
 <br/>
-<p>{% trans "Please set instance location." %}</p>
+<p>{% trans "Please set item location." %}</p>
 <br/>
 
 <div class="fieldWrapper">
@@ -54,6 +54,16 @@
 <div class="fieldWrapper">
     <b>{{ form.member.errors }}</b>
     {% trans form.member.label_tag %}: {{ form.member }}
+</div>
+
+<div class="fieldWrapper">
+    <b>{{ form.person.errors }}</b>
+    {% trans form.person.label_tag %}: {{ form.person }}
+</div>
+
+<div class="fieldWrapper">
+    <b>{{ form.email.errors }}</b>
+    {% trans form.email.label_tag %}: {{ form.email }}
 </div>
 
 <br/>
