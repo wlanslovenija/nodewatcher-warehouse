@@ -20,5 +20,5 @@ urlpatterns = patterns('',
     
     url(r'^mystuff$', MyStuff.as_view(), name='mystuff'),
     
-    url(r'^qr_api/(?P<size>\d{1,2})/(?P<string>.*)$', generate_qr),
+    url(r'^qr_api/(?P<size>\d{1,2})/(?P<string>.*)$', generate_qr, name='qr'),
 )

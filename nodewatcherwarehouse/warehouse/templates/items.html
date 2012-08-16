@@ -99,7 +99,7 @@
         <td>{{ i.mac }}</td>
         <td>{{ i.amount|default:""}}</td>
         <td>{{ i.status }}</td>
-        <td>{{ i.location }}</td>
+        <td>{{ i.location|default:"" }}</td>
         <td>{{ i.status_changed }}</td>
         <td>{{ i.date_added }}</td>
         <td><a href='{% url wh:item-delete pk=i.id %}'>Delete</a></td>
