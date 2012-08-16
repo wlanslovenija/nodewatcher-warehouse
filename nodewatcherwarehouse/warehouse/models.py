@@ -24,8 +24,8 @@ class Attribute(models.Model):
     def __str__(self):
         return "%s=%s" % (self.name, str(self.value))
 
-class Item(models.Model):
-    name = models.CharField(max_length=50, help_text='Name of the item (e.g. router Linksys WRT54GL, RJ45 crimping tools)')
+class ItemType(models.Model):
+    name = models.CharField(max_length=50, help_text='Name of the item type (e.g. router Linksys WRT54GL, RJ45 crimping tools)')
     note = models.CharField(max_length=100, blank=True)
     category = models.ForeignKey(Category)
     date_added = models.DateField(blank=True)
@@ -34,7 +34,7 @@ class Item(models.Model):
     def __str__(self):
         return u"%s %s" % (str(self.id), self.name)
 
-class Instance(models.Model):
+class Item(models.Model):
     # property status
     STATUS_CHOICES = (
             ('sold', 'Sold'),
@@ -49,10 +49,10 @@ class Instance(models.Model):
     
     name = models.CharField(max_length=50)
     note = models.CharField(max_length=100, blank=True)
-    item = models.ForeignKey(Item)
+    item_type = models.ForeignKey(ItemType)
     
     status = models.CharField(max_length=50, choices = STATUS_CHOICES)
-    mac = fields.MACAddressField(blank=True, null=True)
+    mac = models.CharField(max_length = 17, blank=True, null=True)
     date_added = models.DateField(blank=True, null=True)
     last_change = models.DateField(blank=True, null=True)
     
@@ -60,10 +60,13 @@ class Instance(models.Model):
     
     # location
     location = models.ForeignKey(Location, blank=True, null=True)
-    # ref to people
+    # ref to people in DB
     member = models.ForeignKey(User, blank=True, null=True)
     # ref to hot spot location
     node = models.ForeignKey(Node, blank=True, null=True)
+    # ref to person not in DB
+    person = models.CharField(max_length=50, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
     
     def __str__(self):
         return "%s %s" % (self.name, str(self.mac))

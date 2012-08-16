@@ -1,0 +1,52 @@
+{% extends "base_warehouse.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<form action="{% url wh:itemtype %}" method="post">{% csrf_token %}
+
+<p>{% trans "Please add an item type (router type, t-shirt) to the warehouse database. Once you specify the item you can add particular items." %} </p><br/>
+
+{% for field in form %}
+    <div class="fieldWrapper">
+        <b>{{ field.errors }}</b>
+        {% trans field.label_tag %}: {{ field }}
+    </div>
+{% endfor %}
+
+<br/>
+<input type="submit" value="{% trans "Add new item type" %}" />
+</form>
+
+<br/>
+
+<h3>{% trans "Existing item types" %}</h3>
+
+<table border="0" class="listing">
+    <thead>
+    <tr>
+    <th>{% trans "Name" %}</th>
+    <th>{% trans "Category" %}</th>
+    <th>{% trans "Attributes" %}</th>
+    <th>{% trans "Date added" %}</th>
+    <th>{% trans "Note" %}</th>
+    <th></th>
+    <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in itemtype_list %}
+    <tr>
+        <td>{{ i.name }}</td>
+        <td>{{ i.category }}</td>
+        <td>{{ i.attributes }}</td>
+        <td>{{ i.date_added }}</td>
+        <td>{{ i.note }}</td>
+        <td><a href="#">See all instances</a></td>
+        <td><a href="{% url wh:itemtype-delete i.id %}">Delete</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

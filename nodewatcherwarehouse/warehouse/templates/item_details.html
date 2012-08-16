@@ -1,16 +1,16 @@
 {% extends "base_warehouse.html" %}
 {% block content %}
+{% load i18n %}
 
 <img src="http://api.qrserver.com/v1/create-qr-code/?data=http%3A%2F%2127.0.0.1:8000{% url instance-detail object.id %}&size=100x100" alt="" title="" />
 <h3>{{ object.id }}</h3>
-<h3>http://127.0.0.1:8000{% url wh:instance-detail object.id %}</h3>
+<h3>http://127.0.0.1:8000{% url wh:item-detail object.id %}</h3>
 <br/>
 
 <table>
     <tr><td>Name</td><td>{{ object.name }}</td></tr>
     <tr><td>Note</td><td>{{ object.note|default_if_none:""}}</td></tr>
     <tr><td>Status</td><td>{{ object.status }}</td></tr>
-    <tr><td>Mac</td><td>{{ object.mac|default_if_none:""}}</td></tr>
     <tr><td>Location</td><td>{{ object.location }}</td></tr>
     <tr><td>Date added</td><td>{{ object.date_added|default_if_none:""}}</td></tr>
     <tr><td>Status change</td><td>{{ object.status_change|default_if_none:""}}</td></tr>
