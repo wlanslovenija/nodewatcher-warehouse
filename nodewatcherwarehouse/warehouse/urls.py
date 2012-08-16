@@ -13,10 +13,10 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^items$', Items.as_view(), name='items'),
+    url(r'^$', Items.as_view(), name='items'),
     url(r'^item/(?P<pk>\d+)/delete/$', DeleteViewCustom.as_view(model=Item, success_url=reverse_lazy("wh:items") ), name='item-delete'),
     url(r'^instances$', Instances.as_view(), name='instances'),
-    url(r'^instance/view/(?P<pk>\d+)$', DetailView.as_view(model = Instance, template_name='instance_detail.html'), name='instance-detail'),
-    
-    #url(r'^view/(\d+)$', 'warehouse.views.view'),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^item/(?P<pk>\d+)/delete/$', DeleteViewCustom.as_view(model=Instance, success_url=reverse_lazy("wh:instances") ), name='instance-delete'),
+    url(r'^instance/(?P<pk>\d+)/view$', DetailView.as_view(model = Instance, template_name='instance_detail.html'), name='instance-detail'),
+
 )
