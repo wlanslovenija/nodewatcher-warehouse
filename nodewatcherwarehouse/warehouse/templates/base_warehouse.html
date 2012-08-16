@@ -3,6 +3,6 @@
 
 
 {% block heading %}
-<a href="{% url wh:items %}">Items</a> | <a href="{% url wh:instances %}">Instances</a>
+<a href="{% url wh:instances %}">{% trans "Instances" %}</a> | <a href="{% url wh:items %}">{% trans "Items" %}</a> | <a href="{% url wh:mystuff %}">{% trans "My stuff" %}</a>
 <hr>
 {% endblock %}

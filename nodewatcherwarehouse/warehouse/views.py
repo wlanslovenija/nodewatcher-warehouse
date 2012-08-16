@@ -2,13 +2,19 @@ from django.http import HttpResponse
 from forms import InstanceForm, ItemForm
 from models import Item, Instance
 from django.views.generic.edit import CreateView, DeleteView
+from django.views.generic import TemplateView
 from django.core.urlresolvers import reverse_lazy
 
-def list(request):
-    return HttpResponse("Hello world!")
-
-def view(request, id):
-    return HttpResponse("Hello %s!" % id)
+class MyStuff(TemplateView):
+    template_name = "mystuff.html"
+    
+    def get_context_data(self, **kwargs):
+        context = {}
+        
+        # get current user
+        # get his stuff from the warehouse
+        # get stuff assogned to his nodes
+        return context
 
 class Items(CreateView):
     form_class = ItemForm
