@@ -10,7 +10,7 @@
 {% for field in form %}
     <div class="fieldWrapper">
         <b>{{ field.errors }}</b>
-        {{ field.label_tag }}: {{ field }}
+        {% trans field.label_tag %}: {{ field }}
     </div>
 {% endfor %}
 
@@ -20,7 +20,7 @@
 
 <br/>
 
-<h3>Existing items</h3>
+<h3>{% trans "Existing items" %}</h3>
 
 <table border="0" class="listing">
     <thead>
@@ -30,6 +30,8 @@
     <th>{% trans "Attributes" %}</th>
     <th>{% trans "Date added" %}</th>
     <th>{% trans "Note" %}</th>
+    <th></th>
+    <th></th>
     </tr>
     </thead>
     <tbody>
@@ -40,6 +42,8 @@
         <td>{{ i.attributes }}</td>
         <td>{{ i.date_added }}</td>
         <td>{{ i.note }}</td>
+        <td><a href="#">See all instances</a></td>
+        <td><a href="{% url wh:item-delete i.id %}">Delete</a></td>
     </tr>
     {% endfor %}
     </tbody>
