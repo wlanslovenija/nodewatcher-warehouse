@@ -37,14 +37,15 @@ class ItemType(models.Model):
 class Item(models.Model):
     # property status
     STATUS_CHOICES = (
-            ('sold', 'Sold'),
-            ('sold_hold', 'Sold but not payed'),
-            ('ordered', 'Ordered'),
-            ('shop', 'Available for sale'),
+            #('sold', 'Sold'),
+            #('sold_hold', 'Sold but not payed'),
+            #('ordered', 'Ordered'),
+            #('shop', 'Available for sale'),
             ('borrowed', 'Borrowed'),
             ('broken', 'Broken'),
             ('wlan-si', 'Used for wlan-si infrastructure'),
-            ('warehouse', 'In the warehouse')
+            ('warehouse', 'In the warehouse'),
+            ('private', 'Private')
     )
     
     name = models.CharField(max_length=50)
@@ -66,6 +67,7 @@ class Item(models.Model):
     node = models.ForeignKey(Node, blank=True, null=True)
     # ref to person not in DB
     person = models.CharField(max_length=50, blank=True, null=True)
+    phone = models.CharField(max_length=14, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     
     def __str__(self):

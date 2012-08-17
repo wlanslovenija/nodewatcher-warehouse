@@ -23,6 +23,7 @@ class ItemForm(forms.ModelForm):
         self.fields["node"].label_from_instance = lambda y: y.name
         self.fields["node"].queryset = Node.objects.regpoint("config").registry_fields(name = "GeneralConfig.name")
         self.fields["member"].label_from_instance = self.label_member
+        self.fields["item_type"].label_from_instance = lambda y: "%s (%s)" % (y.name, y.note)
     
     class Meta:
         model = Item
