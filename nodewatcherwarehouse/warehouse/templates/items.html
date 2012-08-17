@@ -22,50 +22,73 @@
 </div>
 
 <br/>
-<p>{% trans "Does your object have MAC address?" %}</p>
+<p>{% trans "Does your object have MAC address?" %}
 
-<div class="fieldWrapper">
+<select id='mac_address'>
+<option value='0'>No</option>
+<option value='1'>Yes</option>
+</select>
+</p>
+
+<div id='mac_address_1' style='display: none;'>
     <b>{{ form.mac.errors }}</b>
     {% trans form.mac.label_tag %}: {{ form.mac }}
 </div>
 
 </br>
-<p>{% trans "Would you like to specify more than one item of the same item type? This field is suitable for small and cheap items in large quantities (t-shirts, connectors)." %}</p>
+<p>{% trans "Would you like to specify more than one 'non-individual' item (connector, t-shirt) of the same type?" %}
+<select id='individual_item'>
+<option value='0'>No</option>
+<option value='1'>Yes</option>
+</select>
+</p>
 
-<div class="fieldWrapper">
+<div id="individual_item_1" style='display: none;'>
     <b>{{ form.amount.errors }}</b>
     {% trans form.amount.label_tag %}: {{ form.amount }}
 </div>
 
 <br/>
-<p>{% trans "Please set item location." %}</p>
+<p>{% trans "Would you like to assign the item to particular user, node, location or person?" %}
+    <select id='assign_item'>
+    <option value='0'>No</option>
+    <option value='1'>Yes, to node.</option>
+    <option value='2'>Yes, to nodewatcher user.</option>
+    <option value='3'>Yes, to location.</option>
+    <option value='4'>Yes, to person.</option>
+    </select>
+</p>
 <br/>
 
-<div class="fieldWrapper">
-    <b>{{ form.node.errors }}</b>
-    {% trans form.node.label_tag %}: {{ form.node }}
+<div id='assign_item_1' style='display: none;'>
+<b>{{ form.node.errors }}</b>
+{% trans form.node.label_tag %}: {{ form.node }}
 </div>
 
-<div class="fieldWrapper">
-    <b>{{ form.location.errors }}</b>
-    {% trans form.location.label_tag %}: {{ form.location }}
+<div id='assign_item_2' style='display: none;'>
+<b>{{ form.member.errors }}</b>
+{% trans form.member.label_tag %}: {{ form.member }}
 </div>
 
-<div class="fieldWrapper">
-    <b>{{ form.member.errors }}</b>
-    {% trans form.member.label_tag %}: {{ form.member }}
+<div id='assign_item_3' style='display: none;'>
+<b>{{ form.location.errors }}</b>
+{% trans form.location.label_tag %}: {{ form.location }}
 </div>
 
-<div class="fieldWrapper">
+<div id='assign_item_4' style='display: none;'>
+    <div>
     <b>{{ form.person.errors }}</b>
     {% trans form.person.label_tag %}: {{ form.person }}
-</div>
-
-<div class="fieldWrapper">
+    </div>
+    <div>
+    <b>{{ form.phone.errors }}</b>
+    {% trans form.phone.label_tag %}: {{ form.phone }}
+    </div>
+    <div>
     <b>{{ form.email.errors }}</b>
     {% trans form.email.label_tag %}: {{ form.email }}
+    </div>
 </div>
-
 <br/>
 <input type="submit" value="{% trans "Add new item" %}" />
 </form>
@@ -108,4 +131,12 @@
     {% endfor %}
     </tbody>
 </table>
+
+<script>
+$(document).ready(function() {
+    set_drop_down("#mac_address");
+    set_drop_down("#individual_item");
+    set_drop_down("#assign_item");
+});
+</script>
 {% endblock %}
