@@ -3,6 +3,10 @@
 
 
 {% block heading %}
-<a href="{% url wh:item %}">{% trans "Items" %}</a> | <a href="{% url wh:itemtype %}">{% trans "Item types" %}</a> | <a href="{% url wh:mystuff %}">{% trans "My stuff" %}</a>
+{% if user.is_staff %}
+<a href="{% url wh:item %}">{% trans "Items" %}</a> | <a href="{% url wh:itemtype %}">{% trans "Item types" %}</a> |
+{% endif %} 
+
+<a href="{% url wh:mystuff %}">{% trans "My stuff" %}</a>
 <hr>
 {% endblock %}
