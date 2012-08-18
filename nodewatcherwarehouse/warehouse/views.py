@@ -10,6 +10,8 @@ class MyStuff(TemplateView):
     
     def get_context_data(self, **kwargs):
         context = {}
+        context["current_user"] = self.request.user
+        context["member_items"] = self.request.user.warehouse_member_items
         
         # get current user
         # get his stuff from the warehouse
@@ -22,10 +24,6 @@ class ItemViewDetail(DetailView):
     
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
-        # get domain
-        from django.contrib.sites.models import Site
-        context["current_domain"] = Site.objects.get_current().domain
-        
         return context
 
 class ItemTypeView(CreateView):
