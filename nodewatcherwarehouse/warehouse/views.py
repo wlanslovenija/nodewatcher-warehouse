@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from forms import *
 from models import *
 from django.views.generic.edit import CreateView, DeleteView
-from django.views.generic import TemplateView, View
+from django.views.generic import TemplateView, View, DetailView
 from django.core.urlresolvers import reverse_lazy
 
 class MyStuff(TemplateView):
@@ -15,6 +15,10 @@ class MyStuff(TemplateView):
         # get his stuff from the warehouse
         # get stuff assogned to his nodes
         return context
+
+class ItemViewDetail(DetailView):
+    model = Item
+    template_name='item_detail.html'
 
 class ItemTypeView(CreateView):
     form_class = ItemTypeForm

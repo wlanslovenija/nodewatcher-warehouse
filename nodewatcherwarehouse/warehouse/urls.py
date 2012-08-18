@@ -2,7 +2,6 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 
 from django.conf.urls import patterns, include, url
 from django.core.urlresolvers import reverse_lazy
-from django.views.generic import DetailView
 from django.views.generic.edit import DeleteView
 from warehouse.models import *
 from warehouse.views import *
@@ -20,7 +19,7 @@ urlpatterns = patterns('',
     url(r'^item$', staff_required(ItemView.as_view()), name='item'),
     url(r'^item/(?P<pk>\d+)/delete/$', staff_required(DeleteViewCustom.as_view(model=Item, success_url=reverse_lazy("wh:item"))), name='item-delete'),
     url(r'^item/(?P<pk>\d+)/edit/$', staff_required(DeleteViewCustom.as_view(model=Item, success_url=reverse_lazy("wh:item"))), name='item-edit'),
-    url(r'^item/(?P<pk>\d+)/view$', staff_required(DetailView.as_view(model = Item, template_name='item_detail.html')), name='item-detail'),
+    url(r'^item/(?P<pk>\d+)/view$', staff_required(ItemViewDetail.as_view()), name='item-detail'),
     
     url(r'^mystuff$', login_required(MyStuff.as_view()), name='mystuff'),
     url(r'^$', login_required(MyStuff.as_view()), name='mystuff'),
