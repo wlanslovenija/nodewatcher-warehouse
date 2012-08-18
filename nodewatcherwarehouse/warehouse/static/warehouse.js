@@ -7,3 +7,21 @@ function set_drop_down(id, divs){
         $(current_id).show();
     });
 }
+
+function show_delete_warning(delete_url){
+    $( "#delete-confirm" ).dialog({
+            resizable: false,
+            height:150,
+            modal: true,
+            buttons: {
+                "Delete": function() {
+                    $.get(delete_url, function(data) {
+                        document.location.reload();
+                    });
+                },
+                Cancel: function() {
+                    $(this).dialog("close");
+                }
+            }
+        });
+}
