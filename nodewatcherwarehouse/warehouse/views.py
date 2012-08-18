@@ -19,6 +19,14 @@ class MyStuff(TemplateView):
 class ItemViewDetail(DetailView):
     model = Item
     template_name='item_detail.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super(DetailView, self).get_context_data(**kwargs)
+        # get domain
+        from django.contrib.sites.models import Site
+        context["current_domain"] = Site.objects.get_current().domain
+        
+        return context
 
 class ItemTypeView(CreateView):
     form_class = ItemTypeForm
@@ -62,7 +70,7 @@ class ItemView(CreateView):
         context['item_list'] = Item.objects.all()
         return context
 
-def generate_qr(request, string="", size=5, pix_size=6):
+def generate_qr(request, string="", size=5, pix_size=4):
     import qrcode
     qr = qrcode.QRCode(
         version=size,

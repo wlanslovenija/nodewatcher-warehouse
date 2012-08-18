@@ -3,19 +3,34 @@
 {% load ware_tags %}
 
 {% block content %}
+<div style="text-align: center;">
+<img src="{{ object|qr_code:"1" }}" alt="" title="" />
+<h1 style="font-size:40px;">{{ object.id }}</h1>
+<h3>{{ object|abs_view }}</h3>
+</div>
 
-<img src="{{ object|qr_code }}" alt="" title="" />
-<h3>Id = {{ object.id }}</h3>
-<h3>http://127.0.0.1:8000{% url wh:item-detail pk=object.id %}</h3>
+
+<br/>
 <br/>
 
 <table>
-    <tr><td>{% trans "Name" %}</td><td>{{ object.name }}</td></tr>
-    <tr><td>{% trans "Note" %}</td><td>{{ object.note|default_if_none:""}}</td></tr>
+    <tr><td>{% trans "Item type" %}</td><td>{{ object.item_type.nice_repr }}</td></tr>
+    {% if object.name != "" %}
+        <tr><td>{% trans "Name" %}</td><td>{{ object.name }}</td></tr>
+    {% endif %}
     <tr><td>{% trans "Status" %}</td><td>{{ object.status }}</td></tr>
-    <tr><td>{% trans "Location" %}</td><td>{{ object.location }}</td></tr>
+    {% if object.nice_location != "" %}
+        <tr><td>{% trans "Location" %}</td><td>{{ object.nice_location }}</td></tr>
+    {% endif %}
+    {% if object.amount %} 
+        <tr><td>{% trans "Amount" %}</td><td>{{ object.amount }}</td></tr>
+    {% endif %}
+    {% if object.mac != "" %}
+        <tr><td>{% trans "Mac" %}</td><td>{{ object.mac }}</td></tr>
+    {% endif %}
     <tr><td>{% trans "Date added" %}</td><td>{{ object.date_added|default_if_none:""}}</td></tr>
     <tr><td>{% trans "Status change" %}</td><td>{{ object.status_change|default_if_none:""}}</td></tr>
 </table>
+
 
 {% endblock %}
