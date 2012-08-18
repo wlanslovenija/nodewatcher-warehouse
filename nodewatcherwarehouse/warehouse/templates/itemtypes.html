@@ -43,7 +43,7 @@
         <td>{{ i.date_added }}</td>
         <td>{{ i.note }}</td>
         <td><a href="#">See all instances</a></td>
-        <td><a href="{% url wh:itemtype-delete i.id %}">Delete</a></td>
+        <td><a href='#' onClick='javascript:show_delete_warning("{% url wh:itemtype-delete pk=i.id %}")'>Delete</a></td>
     </tr>
     {% endfor %}
     </tbody>
