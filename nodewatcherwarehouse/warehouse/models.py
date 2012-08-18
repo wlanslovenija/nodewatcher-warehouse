@@ -33,6 +33,12 @@ class ItemType(models.Model):
     
     def __str__(self):
         return u"%s %s" % (str(self.id), self.name)
+    
+    def nice_repr(self):
+        if self.note != "":
+            return "%s (%s)" % (self.name, self.note)
+        else:
+            return str(self.name)
 
 class Item(models.Model):
     # property status
@@ -48,8 +54,8 @@ class Item(models.Model):
             ('private', 'Private')
     )
     
-    name = models.CharField(max_length=50)
-    note = models.CharField(max_length=100, blank=True)
+    name = models.CharField(max_length=50, blank=True, null=True)
+    note = models.CharField(max_length=100, blank=True, null=True)
     item_type = models.ForeignKey(ItemType)
     
     status = models.CharField(max_length=50, choices = STATUS_CHOICES)
@@ -69,6 +75,17 @@ class Item(models.Model):
     person = models.CharField(max_length=50, blank=True, null=True)
     phone = models.CharField(max_length=14, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
+    
+    def nice_location(self):
+        if self.node:
+            return "Node: %s" % self.node.config.core.general().name
+        elif self.member:
+            return "%s %s (%s)" % (self.member.first_name, self.member.last_name, self.member.username)
+        elif self.location:
+            return self.location.name
+        elif self.person != "" or self.email != "":
+            return ", ".join(filter(lambda x: x != "" and x, [self.person, self.phone, self.email]))
+        return ""
     
     def __str__(self):
         return "%s %s" % (self.name, str(self.mac))
