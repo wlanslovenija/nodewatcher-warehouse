@@ -68,9 +68,9 @@ class Item(models.Model):
     # location
     location = models.ForeignKey(Location, blank=True, null=True)
     # ref to people in DB
-    member = models.ForeignKey(User, blank=True, null=True)
+    member = models.ForeignKey(User, blank=True, null=True, related_name='warehouse_member_items')
     # ref to hot spot location
-    node = models.ForeignKey(Node, blank=True, null=True)
+    node = models.ForeignKey(Node, blank=True, null=True, related_name='warehouse_node_items')
     # ref to person not in DB
     person = models.CharField(max_length=50, blank=True, null=True)
     phone = models.CharField(max_length=14, blank=True, null=True)
