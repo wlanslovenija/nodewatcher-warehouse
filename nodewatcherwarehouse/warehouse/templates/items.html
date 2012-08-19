@@ -96,14 +96,16 @@
 <input type="submit" value="{% trans "Add new item" %}" />
 </form>
 
+<br/>
 Bulk actions:
+
 <a href='#' onClick='javascript:generate_labels();'>Generate printable labels</a>
 
-<br/>
+<br/><br/>
 
 <h3>{% trans "Warehouse contents" %}</h3>
 
-<table  border="0" width="100%" class="listing">
+<table  border="0" width="100%" class="listing" id="items_table">
     <thead>
     <tr>
     <th>{% trans "Id" %}</th>
@@ -137,6 +139,8 @@ Bulk actions:
 </table>
 
 <script>
+var labels_url = "{% url wh:item-printlabel items='PLACEHOLDER' %}";
+
 $(document).ready(function() {
     set_drop_down("#mac_address");
     set_drop_down("#individual_item");
