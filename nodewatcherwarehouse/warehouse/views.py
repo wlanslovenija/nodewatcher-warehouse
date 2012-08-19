@@ -11,8 +11,8 @@ class MyStuff(TemplateView):
     def get_context_data(self, **kwargs):
         context = {}
         context["current_user"] = self.request.user
-        context["member_items"] = self.request.user.warehouse_member_items
-        
+        context["member_items"] = self.request.user.warehouse_member_items.all()
+        #context["member_nodes"] = self.request.user.warehouse_member_items.all()        
         # get current user
         # get his stuff from the warehouse
         # get stuff assogned to his nodes
