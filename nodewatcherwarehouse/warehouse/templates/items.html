@@ -96,6 +96,9 @@
 <input type="submit" value="{% trans "Add new item" %}" />
 </form>
 
+Bulk actions:
+<a href='#' onClick='javascript:generate_labels();'>Generate printable labels</a>
+
 <br/>
 
 <h3>{% trans "Warehouse contents" %}</h3>
@@ -112,6 +115,7 @@
     <th>{% trans "Item location" %}</th>
     <th></th>
     <th></th>
+    <th></th>
     </tr>
     </thead>
     <tbody>
@@ -126,6 +130,7 @@
         <td>{{ i.nice_location }}</td>
         <td><a href='#' onClick='javascript:show_delete_warning("{% url wh:item-delete pk=i.id %}")'>Delete</a></td>
         <td><a href='{% url wh:item-edit pk=i.id %}'>Edit</a></td>
+        <td><input type='checkbox' id='cb_{{i.id}}' value='{{i.id}}'></td>
     </tr>
     {% endfor %}
     </tbody>

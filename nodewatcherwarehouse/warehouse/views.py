@@ -68,7 +68,17 @@ class ItemView(CreateView):
         context['item_list'] = Item.objects.all()
         return context
 
-def generate_qr(request, string="", size=5, pix_size=4):
+def print_label(request, items):
+    i = eval(items)
+    # TODO printing
+    # 63.5 x 38.1
+    from PIL import Image
+    
+    response = HttpResponse(mimetype="image/png")
+    #img.save(response, "PNG")
+    return response
+
+def generate_qr(request, string="", size=5, pix_size=4, return_image=False):
     import qrcode
     qr = qrcode.QRCode(
         version=size,
@@ -79,6 +89,8 @@ def generate_qr(request, string="", size=5, pix_size=4):
     qr.add_data(string)
     qr.make()
     img = qr.make_image()
+    if return_image:
+        return img
     response = HttpResponse(mimetype="image/png")
     img.save(response, "PNG")
     return response
