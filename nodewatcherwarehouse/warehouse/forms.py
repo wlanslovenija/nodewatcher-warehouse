@@ -29,5 +29,5 @@ class ItemForm(forms.ModelForm):
         model = Item
         exclude = ('date_added', 'status_change', 'last_change',)
         widgets = {
-            'note': forms.Textarea(attrs={'cols': 60, 'rows': 5}),
+            #'note': forms.Textarea(attrs={'cols': 60, 'rows': 5}),
         }
