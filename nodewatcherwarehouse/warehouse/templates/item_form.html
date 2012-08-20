@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load ware_tags %}
+
+{% block content %}
+<form action="{% url wh:item %}" method="post">{% csrf_token %}
+
+<b>Specification</b>
+
+<div class="fieldWrapper">
+    <b>{{ form.item_type.errors }}</b>
+    {% trans form.item_type.label_tag %}: {{ form.item_type }}
+</div>
+
+<div class="fieldWrapper">
+    <b>{{ form.note.errors }}</b>
+    {% trans form.note.label_tag %}: {{ form.note }}
+</div>
+
+<div class="fieldWrapper">
+    <b>{{ form.status.errors }}</b>
+    {% trans form.status.label_tag %}: {{ form.status }}
+</div>
+
+<br/>
+<p>{% trans "Does your object have MAC address?" %}
+
+<select id='mac_address'>
+<option value='0'>No</option>
+<option value='1'>Yes</option>
+</select>
+</p>
+
+<div id='mac_address_1' {% ifequal form.mac.value "" %} style='display: none;' {% endifequal %}>
+    <b>{{ form.mac.errors }}</b>
+    {% trans form.mac.label_tag %}: {{ form.mac }}
+</div>
+
+</br>
+
+{% if form.amount.value  %}
+<div id="individual_item_1" >
+    <b>{{ form.amount.errors }}</b>
+    {% trans form.amount.label_tag %}: {{ form.amount }}
+</div>
+{% endif %}
+
+<br/>
+<b>Location</b>
+<p>{% trans "Would you like specify item location (node or warehouse)?" %}
+    <select id='assign_location'>
+    <option value='0'>No</option>
+    <option value='1'>Yes, to node.</option>
+    <option value='2'>Yes, to location.</option>
+    </select>
+</p>
+<br/>
+<div id='assign_location_1' {% ifequal form.node.value Node %} style='display: none;' {% endifequal %} > 
+<b>{{ form.node.errors }}</b>
+{% trans form.node.label_tag %}: {{ form.node }}
+</div>
+
+<div id='assign_location_2' {% ifequal form.location.value None %} style='display: none;' {% endifequal %} >
+<b>{{ form.location.errors }}</b>
+{% trans form.location.label_tag %}: {{ form.location }}
+</div>
+
+<b>Ownership</b>
+<p>{% trans "Would you like to assign the owner?" %}
+    <select id='assign_item'>
+    <option value='0'>No</option>
+    <option value='1'>Yes, assign to nodewatcher user.</option>
+    <option value='2'>Yes, assign to person.</option>
+    </select>
+</p>
+<br/>
+
+<div id='assign_item_1' {% ifequal form.member.value None %} style='display: none;' {% endifequal %} >
+<b>{{ form.member.errors }}</b>
+{% trans form.member.label_tag %}: {{ form.member }}
+</div>
+
+<div id='assign_item_2' {% ifequal form.person.value "" %} style='display: none;' {% endifequal %} >
+    <div>
+    <b>{{ form.person.errors }}</b>
+    {% trans form.person.label_tag %}: {{ form.person }}
+    </div>
+    <div>
+    <b>{{ form.phone.errors }}</b>
+    {% trans form.phone.label_tag %}: {{ form.phone }}
+    </div>
+    <div>
+    <b>{{ form.email.errors }}</b>
+    {% trans form.email.label_tag %}: {{ form.email }}
+    </div>
+</div>
+<br/>
+<input type="submit" value="{% trans "Update item" %}" />
+</form>
+
+
+<script>
+var labels_url = "{% url wh:item-printlabel items='PLACEHOLDER' %}";
+
+$(document).ready(function() {
+    set_drop_down("#mac_address");
+    set_drop_down("#individual_item");
+    set_drop_down("#assign_item");
+});
+</script>
+{% endblock %}
