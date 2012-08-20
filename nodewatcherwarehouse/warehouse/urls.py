@@ -18,7 +18,7 @@ urlpatterns = patterns('',
     
     url(r'^item$', staff_required(ItemView.as_view()), name='item'),
     url(r'^item/(?P<pk>\d+)/delete/$', staff_required(DeleteViewCustom.as_view(model=Item, success_url=reverse_lazy("wh:item"))), name='item-delete'),
-    url(r'^item/(?P<pk>\d+)/edit/$', staff_required(DeleteViewCustom.as_view(model=Item, success_url=reverse_lazy("wh:item"))), name='item-edit'),
+    url(r'^item/(?P<pk>\d+)/edit/$', staff_required(ItemUpdateView.as_view()), name='item-edit'),
     url(r'^item/(?P<pk>\d+)/view$', staff_required(ItemViewDetail.as_view()), name='item-detail'),
     url(r'^item/(?P<items>.*)/printlabel$', staff_required(print_label), name='item-printlabel'),
     

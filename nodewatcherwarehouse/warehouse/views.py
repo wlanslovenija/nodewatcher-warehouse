@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from forms import *
 from models import *
-from django.views.generic.edit import CreateView, DeleteView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import TemplateView, View, DetailView
 from django.core.urlresolvers import reverse_lazy
 
@@ -67,6 +67,11 @@ class ItemView(CreateView):
         from warehouse.models import Item
         context['item_list'] = Item.objects.all()
         return context
+
+class ItemUpdateView(UpdateView):
+    model = Item
+    template_name = 'item_form.html'
+    form_class = ItemForm
 
 def print_label(request, items):
     i = eval(items)
